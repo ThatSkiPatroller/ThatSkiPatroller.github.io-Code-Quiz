@@ -56,3 +56,25 @@ header h1 {
     width: 50%;
     padding: 10px;
 }
+
+.scoreBoard {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bolder;
+    text-align: center;
+    background-color: crimson;
+    color: white;
+    border-style: dotted;
+    border-radius: 30px;
+}
+
+.scoreHeader {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}

@@ -2,7 +2,7 @@ var startButton = document.querySelector('.startButton');
 
 // Make box for timer
 var clock = document.querySelector('.timer')
-var secondsLeft = 20;
+var secondsLeft = 60;
 
 // Make box for question
 var question = document.querySelector('.questionBox');
@@ -13,36 +13,28 @@ var answerChoice2 = document.querySelector("#choice2");
 var answerChoice3 = document.querySelector("#choice3");
 var answerChoice4 = document.querySelector("#choice4");
 
-var correctAnswers = 0;
-// var answerChoice1 = document.createElement('div');
-// answerChoice1.id = 'choice1';
-// var answerChoice2 = document.createElement('div');
-// answerChoice2.id = 'choice2';
-// var answerChoice3 = document.createElement('div');
-// answerChoice3.id = 'choice3';
-// var answerChoice4 = document.createElement('div');
-// answerChoice4.id = 'choice4';
+var scoreBoard = document.querySelector(".scoreBoard");
+var score = 0;
 
-//Make questions:
-// How do I make it not go to a previous question
+var correctAnswers = ["6", "Box that wraps around every HTML element", "Document Object Model", "2", "A string stores a series of characters"];
 
- var questionsArray = [
-     {
-         question: "What is a string?",
-         answer: ["A string stores a series of characters", "5", "4", "3"]
-     }, {
-         question: "How many different values can a Boolean have?",  
-         answer: ["2", "six", "seven", "eight"]
-     }, {
-         question: "What does DOM stand for?",
-         answer: ["Document Object Model", "2", "3", "4"]
-     }, {
-         question: "The box model is a...",
-         answer: ["Box that wraps around every HTML element", "3", "4", "5"]
-     }, {
-         question: "How many data types are there in JavaScript?",
-         answer: ["6", "hello", "no", "wrong"]
-     }
+var questionsArray = [
+    {
+        question: "What is a string?",
+        answer: ["A string stores a series of characters", "A string can only contain numbers", "A string is enclosed with {}", "A string is encolsed with ()"]
+    }, {
+        question: "How many different values can a Boolean have?",  
+        answer: ["2", "4", "7", "infinte"]
+    }, {
+        question: "What does DOM stand for?",
+        answer: ["Document Object Model", "Document Objective Model", "Delivery Of Methods", "Data Object Model"]
+    }, {
+        question: "The box model is a...",
+        answer: ["Box that wraps around every HTML element", "Box that only contains padding properties", "Box that only contains border properties", "Box that only contains margin properties"]
+    }, {
+        question: "How many data types are there in JavaScript?",
+        answer: ["6", "7", "8", "9"]
+    }
 ];
 
 // ^ questionsArray.forEach()
@@ -55,42 +47,53 @@ answerChoice4.addEventListener("click", checkAnswer);
 function checkAnswer (event) {
     event.target.textContent 
     if (correctAnswers.includes(event.target.textContent)) {
-        correctAnswers++
+        score++;
+        differentQuestions();
+        console.log(score);
+        scoreBoard.textContent = score;
     } else {
-
+        score--;
     };
 };
-// make 3 wrong answers for each question? 
-
-var correctAnswers = ["6", "Box that wraps around every HTML element", "Document Object Model", "2", "A string stores a series of characters"];
-
+// // make 3 wrong answers for each question? 
 
 function differentQuestions () {
 var randomNumber = Math.ceil(Math.random()*5);
     if (randomNumber === 1) {
         question.innerHTML = questionsArray[0].question;
         for (i=0; i < questionsArray[0].answer.length; i++) {
-            console.log("hello");
             document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[0].answer[i];
-            console.log(document.querySelector("#choice" + (i + 1).toString()));
         }
     } else if (randomNumber === 2) {
         question.innerHTML = questionsArray[1].question;
+        for (i=0; i < questionsArray[1].answer.length; i++) {
+            document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[1].answer[i];
+        }
     } else if (randomNumber === 3) {
         question.innerHTML = questionsArray[2].question;
+        for (i=0; i < questionsArray[2].answer.length; i++) {
+            document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[2].answer[i];
+        }
     } else if (randomNumber === 4) {
         question.innerHTML = questionsArray[3].question;
+        for (i=0; i < questionsArray[3].answer.length; i++) {
+            document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[3].answer[i];
+        }
     } else if (randomNumber === 5) {
         question.innerHTML = questionsArray[4].question;
+        for (i=0; i < questionsArray[4].answer.length; i++) {
+            document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[4].answer[i];
+        }
     };
 };
+
 // pass each questionsArray[0].answer[i], ..Array[1].. through answerLog in startbtn
 function answerLog(questionsArray) {
     for (var i = 0; i < questionsArray.length; i++) {
         document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[0].answer[i];
         console.log(document.querySelector("#choice" + (i + 1).toString()));
     }
-}
+};
 
 // Make timer
 function setTime () {
@@ -109,90 +112,14 @@ function setTime () {
 startButton.addEventListener("click", function () {
     // Call on timer function
     // ** reset timer before calling timer**
+    scoreBoard.textContent = score;
     differentQuestions();
     setTime();
-
+    score = 0;
+});
 // Score board
 // function updateScore () {
 
-// };
-// Declare send message function
-
-// Check answer function
-// function checkAnswer () {
-//     var userClick = 
-//     if (userClick === rightAnswer) {
-//         return nextQuestion;
-//     if (randomNumber === 1 && userClick === // insert number assigned to correct answer//)
-//     };
-// };
-// answerChoice1.addEventListener("click", answerChoices);
-
-// function answerChoices () {
-//     if (differentQuestions(randomNumber === 1)) {
-//         answerChoice1.innerHTML = "Answer Choice 1 for 1";
-//         answerChoice2.innerHTML = "Answer Choice 2 for 1";
-//         answerChoice3.innerHTML = "Answer Choice 3 for 1";
-//         answerChoice4.innerHTML = "Answer Choice 4 for 1";
-//         document.body.appendChild(question);
-//         document.body.appendChild(answerChoice1);
-//         document.body.appendChild(answerChoice2);
-//         document.body.appendChild(answerChoice3);
-//         document.body.appendChild(answerChoice4); 
-//     } else if (randomNumber === 2) {
-//         answerChoice1.innerHTML = "Answer Choice 1 for 2";
-//         answerChoice2.innerHTML = "Answer Choice 2 for 2";
-//         answerChoice3.innerHTML = "Answer Choice 3 for 2";
-//         answerChoice4.innerHTML = "Answer Choice 4 for 2";
-//         document.body.appendChild(question);
-//         document.body.appendChild(answerChoice1);
-//         document.body.appendChild(answerChoice2);
-//         document.body.appendChild(answerChoice3);
-//         document.body.appendChild(answerChoice4); 
-//     } else if (randomNumber === 3) {
-//         answerChoice1.innerHTML = "Answer Choice 1 for 3";
-//         answerChoice2.innerHTML = "Answer Choice 2 for 3";
-//         answerChoice3.innerHTML = "Answer Choice 3 for 3";
-//         answerChoice4.innerHTML = "Answer Choice 4 for 3";
-//         document.body.appendChild(question);
-//         document.body.appendChild(answerChoice1);
-//         document.body.appendChild(answerChoice2);
-//         document.body.appendChild(answerChoice3);
-//         document.body.appendChild(answerChoice4); 
-//     } else if (randomNumber === 4) {
-//         answerChoice1.innerHTML = "Answer Choice 1 for 4";
-//         answerChoice2.innerHTML = "Answer Choice 2 for 4";
-//         answerChoice3.innerHTML = "Answer Choice 3 for 4";
-//         answerChoice4.innerHTML = "Answer Choice 4 for 4";
-//         document.body.appendChild(question);
-//         document.body.appendChild(answerChoice1);
-//         document.body.appendChild(answerChoice2);
-//         document.body.appendChild(answerChoice3);
-//         document.body.appendChild(answerChoice4); 
-//     } else if (randomNumber === 5) {
-//         answerChoice1.innerHTML = "Answer Choice 1 for 5";
-//         answerChoice2.innerHTML = "Answer Choice 2 for 5";
-//         answerChoice3.innerHTML = "Answer Choice 3 for 5";
-//         answerChoice4.innerHTML = "Answer Choice 4 for 5";
-//         document.body.appendChild(question);
-//         document.body.appendChild(answerChoice1);
-//         document.body.appendChild(answerChoice2);
-//         document.body.appendChild(answerChoice3);
-//         document.body.appendChild(answerChoice4); 
-//     };
-// Upon clicking the start button, needs to show 5 divs (question, choice1, choice2, choice3, choice4)
-    // question.innerHTML = "hello world";
-    // answerChoice1.innerHTML = "sup";
-    // answerChoice2.innerHTML = "not much fam";
-    // answerChoice3.innerHTML = "thats coo";
-    // answerChoice4.innerHTML = "oof";
-
-    // document.body.appendChild(question);
-    // document.body.appendChild(answerChoice1);
-    // document.body.appendChild(answerChoice2);
-    // document.body.appendChild(answerChoice3);
-    // document.body.appendChild(answerChoice4); 
-});
 
 // Questions will appear in the same order everytime quiz is restarted
 // Answer choices will be randomized each time quiz is generated
