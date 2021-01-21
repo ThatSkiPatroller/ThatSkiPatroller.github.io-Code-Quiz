@@ -38,6 +38,7 @@ var questionsArray = [
 ];
 
 // ^ questionsArray.forEach()
+// answerLog();
 
 answerChoice1.addEventListener("click", checkAnswer);
 answerChoice2.addEventListener("click", checkAnswer);
@@ -49,51 +50,88 @@ function checkAnswer (event) {
     if (correctAnswers.includes(event.target.textContent)) {
         score++;
         differentQuestions();
-        console.log(score);
+        highScoreLog();
         scoreBoard.textContent = score;
     } else {
+        secondsLeft -= 15;
         score--;
+        scoreBoard.textContent = score;
     };
 };
 // // make 3 wrong answers for each question? 
 
+
 function differentQuestions () {
 var randomNumber = Math.ceil(Math.random()*5);
-    if (randomNumber === 1) {
+var anotherRandomNumber = Math.ceil(Math.random()*4);
+var alreadyAsked1 = false;
+var alreadyAsked2 = false;
+var alreadyAsked3 = false;
+var alreadyAsked4 = false;
+var alreadyAsked5 = false;
+var generatorCounter = 0;
+console.log(generatorCounter);
+
+    if (randomNumber === 1 && alreadyAsked1 == false) {
         question.innerHTML = questionsArray[0].question;
+        alreadyAsked1 = true;
+        generatorCounter++;
+        console.log(generatorCounter);
         for (i=0; i < questionsArray[0].answer.length; i++) {
             document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[0].answer[i];
         }
-    } else if (randomNumber === 2) {
+    } else if (randomNumber === 2 && alreadyAsked2 == false) {
         question.innerHTML = questionsArray[1].question;
+        alreadyAsked2 = true;
+        generatorCounter++;
+        console.log(generatorCounter);
         for (i=0; i < questionsArray[1].answer.length; i++) {
             document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[1].answer[i];
         }
-    } else if (randomNumber === 3) {
+    } else if (randomNumber === 3 && alreadyAsked3 == false) {
         question.innerHTML = questionsArray[2].question;
+        alreadyAsked3 = true;
+        generatorCounter++;
+        console.log(generatorCounter);
         for (i=0; i < questionsArray[2].answer.length; i++) {
             document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[2].answer[i];
         }
-    } else if (randomNumber === 4) {
+    } else if (randomNumber === 4 && alreadyAsked4 == false) {
         question.innerHTML = questionsArray[3].question;
+        alreadyAsked4 = true;
+        generatorCounter++;
+        console.log(generatorCounter);
         for (i=0; i < questionsArray[3].answer.length; i++) {
             document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[3].answer[i];
         }
-    } else if (randomNumber === 5) {
+    } else if (randomNumber === 5 && alreadyAsked5 == false) {
         question.innerHTML = questionsArray[4].question;
+        alreadyAsked5 = true;
+        generatorCounter++;
+        console.log(generatorCounter);
         for (i=0; i < questionsArray[4].answer.length; i++) {
             document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[4].answer[i];
         }
-    };
+    } else if (generatorCounter == 5) {
+
+        console.log("game over");
+    }
 };
 
 // pass each questionsArray[0].answer[i], ..Array[1].. through answerLog in startbtn
-function answerLog(questionsArray) {
-    for (var i = 0; i < questionsArray.length; i++) {
-        document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[0].answer[i];
-        console.log(document.querySelector("#choice" + (i + 1).toString()));
-    }
-};
+// before there was answerLog(questionsArray)
+// function answerLog() {
+//     for (var i = 0; i < questionsArray[0].answer.length; i++) {
+//         document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[0].answer[i];
+//         answerChoice1.addEventListener("click", function {
+//             if (randomNumber == 1 && )
+//         });
+//         console.log(document.querySelector("#choice" + (i + 1).toString()));
+//     } for (var i = 0; i < questionsArray.length; i++) {
+//         document.querySelector("#choice" + (i + 1).toString()).textContent = questionsArray[1].answer[i];
+//         console.log(document.querySelector("#choice" + (i + 1).toString()));
+//     }
+// };
 
 // Make timer
 function setTime () {
@@ -107,6 +145,16 @@ function setTime () {
         clearInterval(timerInterval);
     }
 }, 1000)
+};
+
+function highScoreLog () {
+var highscore = localStorage.getItem("highscore");
+if (highscore != null && score > highscore) {
+    localStorage.setItem("highscore", score)
+} else {
+    localStorage.setItem("highscore", score)
+}
+// if (differentQuestions)
 };
 
 startButton.addEventListener("click", function () {
@@ -123,3 +171,4 @@ startButton.addEventListener("click", function () {
 
 // Questions will appear in the same order everytime quiz is restarted
 // Answer choices will be randomized each time quiz is generated
+
