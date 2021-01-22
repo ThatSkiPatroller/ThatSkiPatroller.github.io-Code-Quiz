@@ -71,6 +71,15 @@ header h1 {
     border-radius: 30px;
 }
 
+.endgame {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
 .scoreHeader {
     margin: auto;
     width: 50%;
